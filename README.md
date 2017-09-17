@@ -230,7 +230,7 @@ For more information on `-` and object notation, please see <http://mongoosejs.c
 
 ## Tips
 
-Note that this package is already built-in to [mongoose-plugin-common][].
+Note that this package is already built-in to [mongoose-common-plugin][].
 
 
 ## Contributors
@@ -245,7 +245,7 @@ Note that this package is already built-in to [mongoose-plugin-common][].
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 [npm]: https://www.npmjs.com/
 
@@ -253,4 +253,4 @@ Note that this package is already built-in to [mongoose-plugin-common][].
 
 [node]: https://nodejs.org/
 
-[mongoose-plugin-common]: https://github.com/ladjs/mongoose-common-plugin
+[mongoose-common-plugin]: https://github.com/ladjs/mongoose-common-plugin

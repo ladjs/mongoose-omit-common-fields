@@ -30,11 +30,11 @@ module.exports = {
   underscored: {
     keys,
     str: keys.map(key => `-${key}`).join(' '),
-    obj: keys.map(key => ({ [key]: 0 }))
+    obj: Object.assign({}, ...keys.map(key => ({ [key]: 0 })))
   },
   camelCased: {
     keys: camelCasedKeys,
     str: camelCasedKeys.map(key => `-${key}`).join(' '),
-    obj: camelCasedKeys.map(key => ({ [key]: 0 }))
+    obj: Object.assign({}, ...camelCasedKeys.map(key => ({ [key]: 0 })))
   }
 };

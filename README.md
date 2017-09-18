@@ -66,17 +66,15 @@ Schema.plugin(
 
 If you want to add additional keys to be omitted using String notation:
 
-> For [node][] v8.3+ you can use object/rest spread:
-
 ```js
 Schema.plugin(
   jsonSelect,
   [
-    ...omitCommonFields.underscored.str,
+    ...omitCommonFields.underscored.keys.map(key => `-${key}`),
     '-some_other_field',
     '-another_field_to_ignore'
   ].join(' ')
-)
+);
 ```
 
 > For older versions you can use `Array.concat`:
@@ -84,40 +82,25 @@ Schema.plugin(
 ```js
 Schema.plugin(
   jsonSelect,
-  omitCommonFields.underscored.str.concat([
-    '-some_other_field',
-    '-another_field_to_ignore'
-  ]).join(' ')
-)
+  omitCommonFields.underscored.keys.concat([
+    'some_other_field',
+    'another_field_to_ignore'
+  ]).map(key => `-${key}`).join(' ')
+);
 ```
 
 ### Object notation
 
 If you want to add additional keys to be omitted using Object notation:
 
-> For [node][] v8.3+ you can use object/rest spread:
-
 ```js
 Schema.plugin(
   jsonSelect,
-  [
-    ...omitCommonFields.underscored.obj,
-    { some_other_fields: 0 },
-    { another_field_to_ignore: 0 }
-  ]
-)
-```
-
-> For older versions you can use `Array.concat`:
-
-```js
-Schema.plugin(
-  jsonSelect,
-  omitCommonFields.underscored.obj.concat([
-    { some_other_fields: 0 },
-    { another_field_to_ignore: 0 }
-  ])
-)
+  Object.assign({}, omitCommonFields.underscored.obj, {
+    some_other_fields: 0,
+    another_field_to_ignore: 0
+  })
+);
 ```
 
 ### Reference
@@ -158,23 +141,23 @@ For more information on `-` and object notation, please see <http://mongoosejs.c
 ### omitCommonFields.underscored.obj
 
 ```js
-[ { _id: 0 },
-  { __v: 0 },
-  { ip: 0 },
-  { last_ips: 0 },
-  { email: 0 },
-  { api_token: 0 },
-  { group: 0 },
-  { attempts: 0 },
-  { last: 0 },
-  { hash: 0 },
-  { password: 0 },
-  { salt: 0 },
-  { reset_token_expires_at: 0 },
-  { reset_token: 0 },
-  { google_profile_id: 0 },
-  { google_access_token: 0 },
-  { google_refresh_token: 0 } ]
+{ _id: 0,
+  __v: 0,
+  ip: 0,
+  last_ips: 0,
+  email: 0,
+  api_token: 0,
+  group: 0,
+  attempts: 0,
+  last: 0,
+  hash: 0,
+  password: 0,
+  salt: 0,
+  reset_token_expires_at: 0,
+  reset_token: 0,
+  google_profile_id: 0,
+  google_access_token: 0,
+  google_refresh_token: 0 }
 ```
 
 ### omitCommonFields.camelCased.keys
@@ -208,23 +191,23 @@ For more information on `-` and object notation, please see <http://mongoosejs.c
 ### omitCommonFields.camelCased.obj
 
 ```js
-[ { id: 0 },
-  { v: 0 },
-  { ip: 0 },
-  { lastIps: 0 },
-  { email: 0 },
-  { apiToken: 0 },
-  { group: 0 },
-  { attempts: 0 },
-  { last: 0 },
-  { hash: 0 },
-  { password: 0 },
-  { salt: 0 },
-  { resetTokenExpiresAt: 0 },
-  { resetToken: 0 },
-  { googleProfileId: 0 },
-  { googleAccessToken: 0 },
-  { googleRefreshToken: 0 } ]
+{ id: 0,
+  v: 0,
+  ip: 0,
+  lastIps: 0,
+  email: 0,
+  apiToken: 0,
+  group: 0,
+  attempts: 0,
+  last: 0,
+  hash: 0,
+  password: 0,
+  salt: 0,
+  resetTokenExpiresAt: 0,
+  resetToken: 0,
+  googleProfileId: 0,
+  googleAccessToken: 0,
+  googleRefreshToken: 0 }
 ```
 
 

@@ -23,6 +23,8 @@
     "eslint-plugin-prettier": "^2.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.4",
+    "lodash.isarray": "^4.0.0",
+    "lodash.isobject": "^3.0.2",
     "nyc": "^11.1.0",
     "prettier": "^1.6.1",
     "remark-cli": "^4.0.0",
@@ -106,5 +108,8 @@
       "no-warning-comments": "off"
     },
     "space": true
+  },
+  "engines": {
+    "node": ">=8.3"
   }
 }

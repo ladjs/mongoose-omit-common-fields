@@ -228,12 +228,10 @@ Note that this package is already built-in to [mongoose-common-plugin][].
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-##
+## 
 
 [npm]: https://www.npmjs.com/
 
 [yarn]: https://yarnpkg.com/
-
-[node]: https://nodejs.org/
 
 [mongoose-common-plugin]: https://github.com/ladjs/mongoose-common-plugin

@@ -2,7 +2,7 @@
   "name": "mongoose-omit-common-fields",
   "description":
     "Array of common fields to emit for Mongoose toObject/toJSON (helpful for security)",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "bugs": {
     "url": "https://github.com/ladjs/mongoose-omit-common-fields/issues",

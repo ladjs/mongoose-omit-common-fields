@@ -14,16 +14,16 @@
 
 * [Install](#install)
 * [Usage](#usage)
-  * [String notation](#string-notation)
-  * [Object notation](#object-notation)
   * [Reference](#reference)
 * [API](#api)
   * [omitCommonFields.underscored.keys](#omitcommonfieldsunderscoredkeys)
   * [omitCommonFields.underscored.str](#omitcommonfieldsunderscoredstr)
   * [omitCommonFields.underscored.obj](#omitcommonfieldsunderscoredobj)
+  * [omitCommonFields.underscored.objTrue](#omitcommonfieldsunderscoredobjtrue)
   * [omitCommonFields.camelCased.keys](#omitcommonfieldscamelcasedkeys)
   * [omitCommonFields.camelCased.str](#omitcommonfieldscamelcasedstr)
   * [omitCommonFields.camelCased.obj](#omitcommonfieldscamelcasedobj)
+  * [omitCommonFields.camelCased.objTrue](#omitcommonfieldscamelcasedobjtrue)
 * [Tips](#tips)
 * [Contributors](#contributors)
 * [License](#license)
@@ -48,64 +48,38 @@ yarn add mongoose-omit-common-fields
 
 ```js
 const mongoose = require('mongoose');
-const jsonSelect = require('mongoose-json-select');
+const mongooseHidden = require('mongoose-hidden')();
 const omitCommonFields = require('mongoose-omit-common-fields');
 
 const Schema = new mongoose.Schema();
 
 Schema.plugin(
-  jsonSelect,
+  mongooseHidden,
   // if your database fields are camelCased then
   // you will need to use `omitCommonFields.camelCased` variation
-  // (e.g. `omitCommonFields.camelCased.str`)
-  omitCommonFields.underscored.str
+  // (e.g. `omitCommonFields.camelCased.objTrue`)
+  { hidden: omitCommonFields.underscored.objTrue }
 );
 ```
 
-### String notation
-
-If you want to add additional keys to be omitted using String notation:
+If you want to add additional keys to be omitted:
 
 ```js
 Schema.plugin(
-  jsonSelect,
-  [
-    ...omitCommonFields.underscored.keys.map(key => `-${key}`),
-    '-some_other_field',
-    '-another_field_to_ignore'
-  ].join(' ')
-);
-```
-
-> For older versions you can use `Array.concat`:
-
-```js
-Schema.plugin(
-  jsonSelect,
-  omitCommonFields.underscored.keys.concat([
-    'some_other_field',
-    'another_field_to_ignore'
-  ]).map(key => `-${key}`).join(' ')
-);
-```
-
-### Object notation
-
-If you want to add additional keys to be omitted using Object notation:
-
-```js
-Schema.plugin(
-  jsonSelect,
-  Object.assign({}, omitCommonFields.underscored.obj, {
-    some_other_fields: 0,
-    another_field_to_ignore: 0
-  })
+  mongooseHidden,
+  {
+    hidden: {
+      ...omitCommonFields.underscored.objTrue,
+      some_other_field: true,
+      another_field_to_ignore: true
+    }
+  }
 );
 ```
 
 ### Reference
 
-For more information on `-` and object notation, please see <http://mongoosejs.com/docs/api.html#query_Query-select>.
+For more information on `-` and object notation, please see <http://mongoosejs.com/docs/api.html#query_Query-select> and <https://github.com/mblarsen/mongoose-hidden>.
 
 
 ## API
@@ -160,6 +134,28 @@ For more information on `-` and object notation, please see <http://mongoosejs.c
   google_refresh_token: 0 }
 ```
 
+### omitCommonFields.underscored.objTrue
+
+```js
+{ _id: true,
+  __v: true,
+  ip: true,
+  last_ips: true,
+  email: true,
+  api_token: true,
+  group: true,
+  attempts: true,
+  last: true,
+  hash: true,
+  password: true,
+  salt: true,
+  reset_token_expires_at: true,
+  reset_token: true,
+  google_profile_id: true,
+  google_access_token: true,
+  google_refresh_token: true }
+```
+
 ### omitCommonFields.camelCased.keys
 
 ```js
@@ -208,6 +204,28 @@ For more information on `-` and object notation, please see <http://mongoosejs.c
   googleProfileId: 0,
   googleAccessToken: 0,
   googleRefreshToken: 0 }
+```
+
+### omitCommonFields.camelCased.objTrue
+
+```js
+{ id: true,
+  v: true,
+  ip: true,
+  lastIps: true,
+  email: true,
+  apiToken: true,
+  group: true,
+  attempts: true,
+  last: true,
+  hash: true,
+  password: true,
+  salt: true,
+  resetTokenExpiresAt: true,
+  resetToken: true,
+  googleProfileId: true,
+  googleAccessToken: true,
+  googleRefreshToken: true }
 ```
 
 

@@ -22,21 +22,24 @@ const keys = [
   'google_refresh_token'
 ];
 
-// TODO: we cannot use the following shorthand line due to this bug:
-// <https://github.com/sindresorhus/camelcase/issues/28>
-// const camelCasedKeys = keys.map(camelCase);
-
-const camelCasedKeys = keys.map(key => camelCase(key));
+const camelCasedKeys = keys.map((key) => camelCase(key));
 
 module.exports = {
   underscored: {
     keys,
-    str: keys.map(key => `-${key}`).join(' '),
-    obj: Object.assign({}, ...keys.map(key => ({ [key]: 0 })))
+    str: keys.map((key) => `-${key}`).join(' '),
+    obj: Object.assign({}, ...keys.map((key) => ({ [key]: 0 }))),
+    // for use with mongoose-hidden
+    objTrue: Object.assign({}, ...keys.map((key) => ({ [key]: true })))
   },
   camelCased: {
     keys: camelCasedKeys,
-    str: camelCasedKeys.map(key => `-${key}`).join(' '),
-    obj: Object.assign({}, ...camelCasedKeys.map(key => ({ [key]: 0 })))
+    str: camelCasedKeys.map((key) => `-${key}`).join(' '),
+    obj: Object.assign({}, ...camelCasedKeys.map((key) => ({ [key]: 0 }))),
+    // for use with mongoose-hidden
+    objTrue: Object.assign(
+      {},
+      ...camelCasedKeys.map((key) => ({ [key]: true }))
+    )
   }
 };

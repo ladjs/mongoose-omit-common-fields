@@ -19,7 +19,9 @@ const keys = [
   'reset_token',
   'google_profile_id',
   'google_access_token',
-  'google_refresh_token'
+  'google_refresh_token',
+  'github_profile_id',
+  'github_access_token'
 ];
 
 const camelCasedKeys = keys.map((key) => camelCase(key));
